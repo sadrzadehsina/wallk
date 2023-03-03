@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import "../i18n";
+import "test-server";
 
 import type { AppProps } from "next/app";
 import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
@@ -12,20 +13,20 @@ export default function MyApp({
 }: AppProps) {
 	return (
 		<SessionProvider session={session}>
-			<App {...pageProps} Component={Component} />
+			<AppHeader />
+			<div className="container mx-auto py-4">
+				<Component {...pageProps} />
+			</div>
 		</SessionProvider>
 	);
 }
 
-function App({ Component, pageProps }: AppProps) {
+function AppHeader() {
 	const { data: session } = useSession();
 
 	return (
 		<div>
 			<Header user={session?.user} loginFn={signIn} logoutFn={signOut} />
-			<div className="container mx-auto py-4">
-				<Component {...pageProps} />
-			</div>
 		</div>
 	);
 }

@@ -28,6 +28,7 @@
   "dependencies": {
     "daisyui": "^2.51.3",
     "i18next": "^22.4.10",
+    "msw": "^1.1.0",
     "react-i18next": "^12.2.0"
   }
 }
