@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import "../i18n";
 
 import type { AppProps } from "next/app";
 import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";

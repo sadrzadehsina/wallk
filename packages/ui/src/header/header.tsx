@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 export const Header = ({
 	user,
 	loginFn,
@@ -7,6 +9,8 @@ export const Header = ({
 	loginFn: () => void;
 	logoutFn: () => void;
 }) => {
+	const { t } = useTranslation();
+
 	return (
 		<div className="navbar bg-base-100">
 			<div className="flex-1">
@@ -29,7 +33,7 @@ export const Header = ({
 							</li>
 							<li>
 								<button type="button" onClick={logoutFn}>
-									Logout
+									{t("logout")}
 								</button>
 							</li>
 						</ul>
@@ -38,7 +42,7 @@ export const Header = ({
 				{!user && (
 					<div className="navbar-end">
 						<button type="button" className="btn" onClick={loginFn}>
-							Login
+							{t("login")}
 						</button>
 					</div>
 				)}
