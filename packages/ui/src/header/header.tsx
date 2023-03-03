@@ -7,7 +7,6 @@ export const Header = ({
 	loginFn: () => void;
 	logoutFn: () => void;
 }) => {
-	console.log(user)
 	return (
 		<div className="navbar bg-base-100">
 			<div className="flex-1">
