@@ -17,7 +17,7 @@ export default function MyApp({
 	);
 }
 
-function App({ Component, pageProps }) {
+function App({ Component, pageProps }: AppProps) {
 	const { data: session } = useSession();
 
 	return (
