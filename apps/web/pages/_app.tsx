@@ -1,7 +1,9 @@
 import "../styles/globals.css";
 
 import type { AppProps } from "next/app";
-import { SessionProvider } from "next-auth/react";
+import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
+
+import { Header } from "ui";
 
 export default function MyApp({
 	Component,
@@ -9,7 +11,18 @@ export default function MyApp({
 }: AppProps) {
 	return (
 		<SessionProvider session={session}>
-			<Component {...pageProps} />
+			<App {...pageProps} Component={Component} />
 		</SessionProvider>
+	);
+}
+
+function App({ Component, pageProps }) {
+	const { data: session } = useSession();
+
+	return (
+		<>
+			<Header user={session?.user} loginFn={signIn} logoutFn={signOut} />
+			<Component {...pageProps} />
+		</>
 	);
 }
