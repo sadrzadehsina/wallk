@@ -21,9 +21,11 @@ function App({ Component, pageProps }: AppProps) {
 	const { data: session } = useSession();
 
 	return (
-		<>
+		<div>
 			<Header user={session?.user} loginFn={signIn} logoutFn={signOut} />
-			<Component {...pageProps} />
-		</>
+			<div className="container mx-auto py-4">
+				<Component {...pageProps} />
+			</div>
+		</div>
 	);
 }
