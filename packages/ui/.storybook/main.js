@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
 	core: {
@@ -28,12 +28,14 @@ module.exports = {
 			use: [
 				{
 					loader: "postcss-loader",
-					options: { implementation: require.resolve("postcss") },
+					options: {
+						implementation: require.resolve("postcss"),
+					},
 				},
 			],
 			include: path.resolve(__dirname, "../"),
 		});
 		// Return the altered config
 		return config;
-	}
-}
+	},
+};

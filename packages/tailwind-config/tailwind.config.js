@@ -1,5 +1,9 @@
 module.exports = {
-	content: ["../../packages/ui/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+	content: [
+		"../../packages/ui/**/*.{ts,tsx}",
+		"../../packages/ui/**/*.stories.{ts,tsx}",
+		"./src/**/*.{ts,tsx}",
+	],
 	theme: {
 		extend: {},
 	},

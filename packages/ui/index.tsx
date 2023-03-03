@@ -1,2 +1,2 @@
-import "./styles.css";
 export * from "./src/button";
+export * from './src/header";
