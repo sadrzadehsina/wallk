@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { forwardRef, useCallback, useEffect, useRef, useState } from "react";
 
 type Data = {
@@ -76,7 +77,7 @@ function usePosts(serverPosts: Array<Post>, page = 0) {
 			const newPosts = await res.json();
 
 			setLoading(false);
-			setHasMore(newPosts.docs.length > 0)
+			setHasMore(newPosts.docs.length > 0);
 
 			setPosts((perviousPosts) => {
 				return [...perviousPosts, ...newPosts.docs];
@@ -92,21 +93,23 @@ function usePosts(serverPosts: Array<Post>, page = 0) {
 const PostCard = forwardRef(function PostCard(post: Post, ref) {
 	return (
 		<div ref={ref} className="card w-96 bg-base-200 shadow-xl">
-			<figure>
-				<Image
-					src={post.coverImageURL}
-					alt={post.title}
-					width="384"
-					height="200"
-				/>
-			</figure>
-			<div className="card-body">
-				<h2 className="card-title">{post.title}</h2>
-				<p>{post.coverDescription}</p>
-				<div className="card-actions justify-end">
-					<h6>{post.price}</h6>
+			<Link href={`/post/${post.id}`}>
+				<figure>
+					<Image
+						src={post.coverImageURL}
+						alt={post.title}
+						width="384"
+						height="200"
+					/>
+				</figure>
+				<div className="card-body">
+					<h2 className="card-title">{post.title}</h2>
+					<p>{post.coverDescription}</p>
+					<div className="card-actions justify-end">
+						<h6>{post.price}</h6>
+					</div>
 				</div>
-			</div>
+			</Link>
 		</div>
 	);
 });
