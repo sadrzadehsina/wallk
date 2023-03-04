@@ -91,12 +91,12 @@ function usePosts(serverPosts: Array<Post>, page = 0) {
 
 const PostCard = forwardRef(function PostCard(post: Post, ref) {
 	return (
-		<div ref={ref} className="card w-96 bg-base-100 shadow-xl">
+		<div ref={ref} className="card w-96 bg-base-200 shadow-xl">
 			<figure>
 				<Image
 					src={post.coverImageURL}
 					alt={post.title}
-					width="300"
+					width="384"
 					height="200"
 				/>
 			</figure>

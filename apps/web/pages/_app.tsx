@@ -14,7 +14,7 @@ export default function MyApp({
 	return (
 		<SessionProvider session={session}>
 			<AppHeader />
-			<div className="container mx-auto py-4">
+			<div className="container mx-auto py-12">
 				<Component {...pageProps} />
 			</div>
 		</SessionProvider>
@@ -24,9 +24,5 @@ export default function MyApp({
 function AppHeader() {
 	const { data: session } = useSession();
 
-	return (
-		<div>
-			<Header user={session?.user} loginFn={signIn} logoutFn={signOut} />
-		</div>
-	);
+	return <Header user={session?.user} loginFn={signIn} logoutFn={signOut} />;
 }

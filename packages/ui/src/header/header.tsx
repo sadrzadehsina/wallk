@@ -12,7 +12,7 @@ export const Header = ({
 	const { t } = useTranslation();
 
 	return (
-		<div className="navbar bg-base-100">
+		<div className="navbar bg-base-300 p-4">
 			<div className="flex-1">
 				<a className="btn-ghost btn text-xl normal-case">WallK</a>
 			</div>
@@ -41,7 +41,11 @@ export const Header = ({
 				)}
 				{!user && (
 					<div className="navbar-end">
-						<button type="button" className="btn" onClick={loginFn}>
+						<button
+							type="button"
+							className="btn-primary btn-link no-animation btn"
+							onClick={loginFn}
+						>
 							{t("login")}
 						</button>
 					</div>
