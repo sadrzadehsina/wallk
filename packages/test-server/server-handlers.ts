@@ -19,13 +19,34 @@ const handlers = [
   rest.get("https://backend/posts/:id", async (req, res, ctx) => {
     const { id } = req.params;
 
-		const post = await read(id as unknown as string);
+    const post = await read(id as unknown as string);
 
-		return res(
-			ctx.json({
-				doc: post
-			})
-		)
+    return res(
+      ctx.json({
+        doc: post,
+      })
+    );
+  }),
+  rest.post("https//backend/posts", async (req, res, ctx) => {
+    const {
+      title,
+      user,
+      coverImageURL,
+      price,
+      category,
+      coverDescription,
+      description,
+    } = req.body;
+
+    console.log(
+      title,
+      user,
+      coverImageURL,
+      price,
+      category,
+      coverDescription,
+      description
+    );
   }),
 ];
 

@@ -4,6 +4,11 @@ let posts = [...postsData];
 
 const PAGE_SIZE: number = 20;
 
+async function create(post) {
+  posts.push(post);
+  return post;
+}
+
 async function readAll(page: number = 0) {
   return posts.slice(page, PAGE_SIZE);
 }
