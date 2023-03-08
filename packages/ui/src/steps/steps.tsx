@@ -48,7 +48,7 @@ export function Stepper(props: PropsWithChildren<StepperProps>) {
 
 export function StepButtons(props: PropsWithChildren<{}>) {
 	const { children } = props;
-	return <ul className="steps">{children}</ul>;
+	return <ul className="steps w-full">{children}</ul>;
 }
 
 export function StepButton(props: PropsWithChildren<StepButtonProps>) {
@@ -57,7 +57,12 @@ export function StepButton(props: PropsWithChildren<StepButtonProps>) {
 	const { current, change } = useContext(StepperContext);
 
 	return (
-		<li className="step" data-content={value < current ? "✓" : value}>
+		<li
+			className={["step", value <= current && "step-success"]
+				.filter(Boolean)
+				.join(" ")}
+			data-content={value < current ? "✓" : value}
+		>
 			<button type="button" onClick={() => change(value)}>
 				{children}
 			</button>
@@ -67,7 +72,7 @@ export function StepButton(props: PropsWithChildren<StepButtonProps>) {
 
 export function StepContents(props: PropsWithChildren<{}>) {
 	const { children } = props;
-	return <div>{children}</div>;
+	return <div className="py-12">{children}</div>;
 }
 
 export function StepContent(props: PropsWithChildren<StepContentProps>) {
