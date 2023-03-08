@@ -15,7 +15,7 @@ export function Select(props: PropsWithChildren<SelectProps>) {
 	const { name, label, required, error, children: options, onChange } = props;
 
 	return (
-		<div className="form-control w-full max-w-xs">
+		<div className="form-control w-full">
 			<label className="label">
 				<span className={`label-text ${error ? "text-error" : ""}`}>
 					{label} {required && <span className="text-error">*</span>}
