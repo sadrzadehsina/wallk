@@ -45,11 +45,9 @@ export function Wizard(props: PropsWithChildren<WizardProps>) {
 				<Form>
 					<Stepper.Container active={stepNumber + 1} disableButtons>
 						<Stepper.Buttons>
-							{Array(totalSteps)
-								.fill(1)
-								.map((s, i) => (
-									<Stepper.Button value={i + 1}>Step {i + 1}</Stepper.Button>
-								))}
+							{steps.map((s, i) => (
+								<Stepper.Button value={i + 1}>{s.props.title}</Stepper.Button>
+							))}
 						</Stepper.Buttons>
 						<Stepper.Contents>
 							{steps.map((s, i) => (
@@ -59,12 +57,22 @@ export function Wizard(props: PropsWithChildren<WizardProps>) {
 					</Stepper.Container>
 					<div className="flex">
 						{stepNumber > 0 && (
-							<button onClick={() => previous(formik.values)} type="button">
-								Back
-							</button>
+							<div className="flex-none pr-4">
+								<button
+									onClick={() => previous(formik.values)}
+									type="button"
+									className="btn-primary btn"
+								>
+									Back
+								</button>
+							</div>
 						)}
-						<div>
-							<button disabled={formik.isSubmitting} type="submit">
+						<div className="flex-initial">
+							<button
+								disabled={formik.isSubmitting}
+								type="submit"
+								className={`btn ${isLastStep ? "btn-success" : "btn-primary"}`}
+							>
 								{isLastStep ? "Submit" : "Next"}
 							</button>
 						</div>
@@ -75,6 +83,10 @@ export function Wizard(props: PropsWithChildren<WizardProps>) {
 	);
 }
 
-export function WizardStep(props: PropsWithChildren<{}>) {
+type WizardStepProps = {
+	title: string;
+};
+
+export function WizardStep(props: PropsWithChildren<WizardStepProps>) {
 	return <>{props.children}</>;
 }
