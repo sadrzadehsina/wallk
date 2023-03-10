@@ -3,6 +3,7 @@ import {
 	PropsWithChildren,
 	useCallback,
 	useContext,
+	useEffect,
 	useMemo,
 	useState,
 } from "react";
@@ -10,10 +11,12 @@ import {
 type StepperContextProps = {
 	current: number;
 	change: (index: number) => void;
+	disableButtons?: boolean;
 };
 
 type StepperProps = {
 	active: number;
+	disableButtons?: boolean;
 };
 
 type StepButtonProps = {
@@ -30,7 +33,7 @@ const StepperContext = createContext<StepperContextProps>({
 });
 
 export function Stepper(props: PropsWithChildren<StepperProps>) {
-	const { children, active } = props;
+	const { children, active, disableButtons } = props;
 
 	const [current, setCurrent] = useState(active);
 
@@ -39,7 +42,12 @@ export function Stepper(props: PropsWithChildren<StepperProps>) {
 		[setCurrent]
 	);
 
-	const state = useMemo(() => ({ current, change }), [current, change]);
+	const state = useMemo(
+		() => ({ current, change, disableButtons }),
+		[current, change]
+	);
+
+	useEffect(() => change(active), [active]);
 
 	return (
 		<StepperContext.Provider value={state}>{children}</StepperContext.Provider>
@@ -54,7 +62,7 @@ export function StepButtons(props: PropsWithChildren<{}>) {
 export function StepButton(props: PropsWithChildren<StepButtonProps>) {
 	const { children, value } = props;
 
-	const { current, change } = useContext(StepperContext);
+	const { current, change, disableButtons } = useContext(StepperContext);
 
 	return (
 		<li
@@ -63,9 +71,13 @@ export function StepButton(props: PropsWithChildren<StepButtonProps>) {
 				.join(" ")}
 			data-content={value < current ? "✓" : value}
 		>
-			<button type="button" onClick={() => change(value)}>
-				{children}
-			</button>
+			{disableButtons ? (
+				<span>{children}</span>
+			) : (
+				<button type="button" onClick={() => change(value)}>
+					{children}
+				</button>
+			)}
 		</li>
 	);
 }
