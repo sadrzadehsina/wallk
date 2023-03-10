@@ -3,6 +3,7 @@ module.exports = {
 		"../../packages/ui/**/*.{ts,tsx}",
 		"../../packages/ui/**/*.stories.{ts,tsx}",
 		"./pages/**/*.{ts,tsx}",
+		"./components/**/*.{ts,tsx}",
 	],
 	theme: {
 		extend: {},
@@ -10,6 +11,6 @@ module.exports = {
 	plugins: [require("daisyui")],
 	daisyui: {
 		themes: ["luxury", "halloween"],
-		logs: false
-	}
+		logs: false,
+	},
 };
